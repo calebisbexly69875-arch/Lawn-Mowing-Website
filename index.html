@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Lawn Mowing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- FLOATING GRASS -->
+    <div class="floating-grass grass1"></div>
+    <div class="floating-grass grass2"></div>
+    <div class="floating-grass grass3"></div>
+    <div class="floating-grass grass4"></div>
+    <div class="floating-grass grass5"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="logo">Summer Lawn Mowing</div>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why">Why Choose Me</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Summer Lawn Mowing</h1>
+            <p>Reliable • Affordable • Local</p>
+            <div class="buttons">
+                <button class="button" id="phoneButton">Call Now</button>
+                <button class="button" id="emailButton">Email Me</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="yourphoto.jpg" alt="Your Photo">
+        </div>
+    </header>
+
+    <!-- ABOUT ME -->
+    <section class="card fade-slide" id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <img src="yourphoto.jpg" alt="Caleb Cleghorn" class="about-photo">
+            <div class="about-info">
+                <p><strong>Name:</strong> Caleb Cleghorn</p>
+                <p><strong>Phone:</strong> 506-703-5149</p>
+                <p><strong>Email:</strong> ksgdlnshd67@icloud.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="card fade-slide" id="services">
+        <h2>What I Do</h2>
+        <p>I provide professional lawn mowing and yard cleanup services during the summer. Perfect for busy families or anyone who wants a neat, healthy lawn.</p>
+    </section>
+
+    <!-- WHY CHOOSE ME -->
+    <section class="card fade-slide" id="why">
+        <h2>Why Choose Me?</h2>
+        <ul>
+            <li>On-time and reliable</li>
+            <li>Affordable pricing</li>
+            <li>Local and hardworking</li>
+            <li>Passionate about a clean, healthy lawn</li>
+        </ul>
+    </section>
+
+    <!-- PRICING -->
+    <section class="card fade-slide" id="pricing">
+        <h2>Pricing</h2>
+        <p>Prices depend on lawn size.<br><strong>Starting at $20 per mow</strong></p>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="card fade-slide" id="testimonials">
+        <h2>Testimonials</h2>
+        <p>"Caleb did an amazing job on our lawn! Super reliable and friendly." – Jane D.</p>
+        <p>"Best lawn mowing service in town, highly recommended!" – Mike S.</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="card fade-slide" id="contact">
+        <h2>Contact Me</h2>
+        <p>Phone: <strong>506-703-5149</strong><br>Email: <strong>ksgdlnshd67@icloud.com</strong></p>
+        <p>Send me a message or call now for a free quote!</p>
+    </section>
+
+    <footer>
+        <p>© 2026 Summer Lawn Mowing</p>
+    </footer>
+
+    <!-- PHONE POPUP -->
+    <div id="phonePopup" class="popup">
+        <span id="closePopup">&times;</span>
+        <p>My Number: <strong>506-703-5149</strong></p>
+    </div>
+
+    <!-- EMAIL POPUP -->
+    <div id="emailPopup" class="popup">
+        <span id="closeEmailPopup">&times;</span>
+        <p>My Email: <strong>ksgdlnshd67@icloud.com</strong></p>
+    </div>
+
+    <!-- JS -->
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+            });
+        });
+
+        // Scroll fade animation
+        const faders = document.querySelectorAll('.fade-slide');
+        const appearOptions = { threshold:0.2, rootMargin:"0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(!entry.isIntersecting) return;
+                entry.target.classList.add('appear');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+
+        // Phone popup
+        const phoneButton = document.getElementById('phoneButton');
+        const phonePopup = document.getElementById('phonePopup');
+        const closePopup = document.getElementById('closePopup');
+
+        phoneButton.addEventListener('click', () => { phonePopup.style.display='block'; });
+        closePopup.addEventListener('click', () => { phonePopup.style.display='none'; });
+        window.addEventListener('click', e => { if(e.target === phonePopup) phonePopup.style.display='none'; });
+
+        // Email popup
+        const emailButton = document.getElementById('emailButton');
+        const emailPopup = document.getElementById('emailPopup');
+        const closeEmailPopup = document.getElementById('closeEmailPopup');
+
+        emailButton.addEventListener('click', () => { emailPopup.style.display='block'; });
+        closeEmailPopup.addEventListener('click', () => { emailPopup.style.display='none'; });
+        window.addEventListener('click', e => { if(e.target === emailPopup) emailPopup.style.display='none'; });
+    </script>
+
+</body>
+</html>
